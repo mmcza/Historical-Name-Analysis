@@ -363,6 +363,7 @@ def main():
 
     fig, axs = plt.subplots(3, 2, figsize=(13, 9))
     plt.subplots_adjust(hspace=0.5)
+    bins = np.histogram_bin_edges(pl_df[f'frequency_female'], bins=20)
     for i, year in enumerate([2000, 2013, 2023]):
         pl_df_year = pl_df[pl_df['year'] == year]
 
@@ -373,7 +374,6 @@ def main():
             else:
                 gender_full = 'male'
 
-            bins = np.histogram_bin_edges(pl_df_year[f'frequency_{gender_full}'], bins=20)
             axs[i, j].hist(pl_df_year[(pl_df_year['sex'] == gender) & (pl_df_year['in_top'] == False)]
                            [f'frequency_{gender_full}'], bins=bins, color='b', alpha=0.5, label='Not in top')
             axs[i, j].hist(

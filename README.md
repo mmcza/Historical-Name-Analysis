@@ -11,8 +11,8 @@ pip install -r requirements.txt
 
 ## Data
 
-The data was downloaded from the following websites:
+The data can be found on the following websites:
 - [United States](https://www.ssa.gov/oact/babynames/names.zip)
 - [Poland](https://dane.gov.pl/pl/dataset/219,imiona-nadawane-dzieciom-w-polsce)
 
-\*The data for Poland was downloaded from univerity's website in form of a sqlite database, but values were the same as on the mentioned website.
+\*The data for Poland was downloaded from university's website in form of a sqlite database, but values were the same as on the mentioned website.
