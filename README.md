@@ -27,6 +27,11 @@ The tasks that were performed in the project are available [here](https://put-ju
 
 #### Number of unique names
 
+Number of unique names: 103564.
+Number of unique names by gender:
+ - F:    70903
+ - M:    44261
+
 #### Count of births by year and ratio of count of born girls to born boys every year
 
 ![](/figures/1_Number_of_births_per_year.png)
@@ -55,7 +60,7 @@ and between 2010 and 2013.
 The rate of change in diversity depends on gender, with a bigger rate observed for female names.
 However, the overall shape of the trend is similar for both male and female names - the overall diversity of names
 has increased over the years, and when the diversity was decreasing, it was decreasing for both genders.
-The greatest difference in diversity was observed in 2008.
+The greatest difference in diversity was observed in 2008 and the difference was 0.16952209755307035.
 
 The conclusions obtained from the analysis are consistent with the information provided on
 https://en.wikipedia.org/wiki/Naming_in_the_United_States#Gender, which confirms their validity and reliability.
@@ -74,11 +79,36 @@ which was the last letter of names given to almost 30% of boys, and second most 
 
 ![](/figures/6_p_m_biggest_change.png)
 
+Name with the largest change from being a female name to a male name is: Donnie and the change of p_m is: 0.8817976850735472.
+Name with the largest change from being a male name to a female name is: Ashley and the change of p_m is: -0.9933546933773039.
+
 ### Poland
 
 #### Diversity of names in Poland
 
 ![](/figures/7_Percentage_of_names_in_ranking_PL.png)
+
+Overall, name diversity has been increasing over the years, with a slight decline observed between 2015 and 2018.
+The greatest difference in diversity between genders occurred in the year 2000, after which the gap gradually
+narrowed (with a slight uptick in 2023). The overall percentage of female names in the top 200 rankings
+was slightly lower than that of male names, but the difference was not significant.
+
 ![](/figures/8_Histograms_for_polish_names.png)
 
+The observed trend can be attributed to the fact that prior to 2013, a minimum of 5 children had to be given
+a certain name for it to be recorded, whereas since 2013, the threshold was reduced to 2.
+What's interesting, is that for the American dataset, the threshold was 5, as according to [SSA's policy](https://www.ssa.gov/OACT/babynames/background.html), it's not not safe for privacy reasons to release names
+that were given to less than 5 kids.
+
 #### Connotation of names in Poland
+
+Names that were relatively often given to both boys and girls in Poland: ANDREA and YUVAL
+
+## Optimization
+
+The code was optimized by using `dask` library to parallelize the computations. This allowed to speed up the computations by around 3 times.
+
+Additionally, 2 methods for normalization were implemented:
+- using `crosstab` method from `pandas` library,
+- using `groupby` method and normalizing by calling `df.div(df.sum(axis=1), axis=0)` from `pandas` library.
+The results was a 12% speedup when using the second method.
